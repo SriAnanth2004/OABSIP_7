@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            padding: 0;
+            background: linear-gradient(#868F96,#596164);
+            height: 100%;
+            width: 100%;
+            
+        }
+        #loginpage{
+            padding: 0;
+            background: linear-gradient(#868F96,#596164);
+            height: 100vh;
+            width: 100vh;
+        }
+        h1{
+            margin-left: 70vh;
+        }
+        #loginwindow{
+            margin-top: 100px;
+            height: 60vh;
+            width: 50vh;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            justify-content:space-around;
+            border-radius: 10px;
+            opacity: 60%;
+            margin-left: 70vh;
+        }
+        #loginwindow p{
+            font-size: 30px;
+            font-weight: 12px;
+            text-align: center;
+        }
+        #loginwindow input{
+            width: 250px;
+            margin-left: 7%;
+            background: white;
+            opacity: 100%;
+            color: black;
+            height: 18px;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+        #loginwindow button{
+            width: 150px;
+            margin-left: 25%;
+            background-color: #868F96;
+            color: black;
+        }
+        #loginwindow a{
+            margin-left: 17%;
+            cursor: pointer;
+        }
+        /*--signup--*/
+        #signuppage{
+        padding: 0;
+        background: linear-gradient(#868F96,#596164);
+        height: 100vh;
+        width: 100vh;
+        display: none;
+        }
+        #signup{
+            margin-top: 100px;
+            height: 60vh;
+            width: 50vh;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            justify-content:space-around;
+            border-radius: 10px;
+            opacity: 60%;
+            margin-left: 70vh;
+        }
+        #signup p{
+            font-size: 30px;
+            font-weight: 12px;
+            text-align: center;
+        }
+        #signup input{
+            width: 250px;
+            margin-left: 7%;
+            background: white;
+            opacity: 100%;
+            color: black;
+            height: 18px;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+        #signup button{
+            width: 150px;
+            margin-left: 25%;
+            background-color: #868F96;
+            color: black;
+        }
+        #signup a{
+            margin-left: 40%;
+            cursor: pointer;
+        
+        }
+        /*   main page  */
+        #mainpage{
+            padding: 0;
+            background: linear-gradient(#868F96,#596164);
+            height: 100vh;
+            width: 100vh;
+            display: none;
+        }
+        #mainpage p{
+            text-align: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+        /*for small screens*/
+        @media (max-width: 767px) {
+            #loginwindow, #signup, #mainpage {
+                width: 90%;
+                margin-left: 5%; 
+            }
+
+            h1 {
+                margin-left: 5%; 
+                font-size: 24px; 
+            }
+
+            #loginwindow, #signup, #mainpage p {
+                font-size: 20px; 
+            }
+
+            #loginwindow input, #signup input {
+                width: 80%; 
+                margin-left: 10%; 
+            }
+
+            #loginwindow button, #signup button {
+                width: 60%;
+                margin-left: 20%;
+            }
+
+            #loginwindow a, #signup a {
+                margin-left: 30%;
+            }
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+</head>
+<body>
+    <div id="loginpage">
+        <h1>Social Media</h1>
+        <div id="loginwindow">
+            <p>login</p>
+            <input type="text" id="loginUsername" placeholder="Username">
+            <input type="text" id="loginPassword" placeholder="Password">
+            <button onclick="LoginMain()">login</button>
+            <a id="openSignup">don't have an account try signup</a>
+        </div>
+    </div>
+    <div id="signuppage">
+        <h1>Social Media</h1>
+        <div id="signup">
+            <p>Signup</p>
+            <input type="text" id="signupUsername" placeholder="Username">
+            <input type="text" id="signupPassword" placeholder="Password">
+            <button onclick="Signup()">Signup</button>
+            <a id="openLogin">Try to login</a>
+        </div>
+    </div>
+    <div id="mainpage">
+        <h1>Social Media</h1>
+        <p>Go do some work idiot.</p>
+    </div>
+<script>
+    document.getElementById('openSignup').addEventListener('click', function () {
+        document.getElementById('signuppage').style.display = 'block';
+        document.getElementById('loginpage').style.display = 'none';
+    });
+
+    document.getElementById('openLogin').addEventListener('click', function () {
+        document.getElementById('signuppage').style.display = 'none';
+        document.getElementById('loginpage').style.display = 'block';
+    });
+
+    function Signup() {
+        var usernameSignup = document.getElementById('signupUsername').value;
+        var passwordSignup = document.getElementById('signupPassword').value;
+        localStorage.setItem('usernameSignup', usernameSignup);
+        localStorage.setItem('passwordSignup', passwordSignup);
+    }
+
+    function LoginMain() {
+        var usernameLogin = document.getElementById('loginUsername').value;
+        var passwordLogin = document.getElementById('loginPassword').value;
+        var savedUsername = localStorage.getItem('usernameSignup');
+        var savedPassword = localStorage.getItem('passwordSignup');
+        
+        if (usernameLogin === savedUsername && passwordLogin === savedPassword) {
+            document.getElementById('mainpage').style.display = 'block';
+            document.getElementById('signuppage').style.display = 'none';
+            document.getElementById('loginpage').style.display = 'none';
+        } else {
+            alert("Invalid username or password");
+        }
+    }
+
+</script>
+</body>
+</html>
